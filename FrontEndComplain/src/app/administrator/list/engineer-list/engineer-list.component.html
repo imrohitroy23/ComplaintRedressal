@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Pincodes</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of engineers">
+        <td>{{ e.name }}</td>
+        <td>{{ e.mobile }}</td>
+        <td>{{ e.email }}</td>
+        <td>{{ e.password }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let pin of e.pincodes">{{ pin }}</li>
+          </ul>
+        </td>
+        <td><button class="btn btn-outline-primary" (click)="updateform(e)">Update</button> &nbsp;
+          <button class="btn btn-outline-danger" (click)="deleteForm(e.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table> 

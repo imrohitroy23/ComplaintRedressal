@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complaint Redressal</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="jumbotron">
+      <h1 class="display-4">Complaint Redressal</h1>
+      <p class="lead">At our company, we take all complaints seriously and are committed to resolving any issues in a fair and timely manner.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Contact Us</h2>
+        <p>If you you need our services like Broadband, Mobile and Telephone, etc. please contact our customer service team they will guide and reach out to you to provide the best services accross the india.</p>
+        <p><strong>Phone:</strong> 8928983022</p>
+        <p><strong>Email:</strong> service@abctelecom.com</p>
+        <p><strong>Address:</strong> 123 Main Street, mumbai, India</p>
+      </div>
+      <div class="col-md-6">
+        <h2>Request for callback</h2>
+        <div class="col-md-12">
+          <form [formGroup]="complaintForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name" required>
+              <div *ngIf="complaintForm.controls['name'].invalid && (complaintForm.controls['name'].dirty || complaintForm.controls['name'].touched)" class="alert alert-danger">
+                <div *ngIf="complaintForm.controls['name'].errors?.['required']">
+                  Name is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email" required>
+              <div *ngIf="complaintForm.controls['email'].invalid && (complaintForm.controls['email'].dirty || complaintForm.controls['email'].touched)" class="alert alert-danger">
+                <div *ngIf="complaintForm.controls['email'].errors?.['required']">
+                  Email is required
+                </div>
+                <div *ngIf="complaintForm.controls['email'].errors?.['email']">
+                  Invalid email address
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" class="form-control" id="phone" formControlName="phone" required>
+              <div *ngIf="complaintForm.controls['phone'].invalid && (complaintForm.controls['phone'].dirty || complaintForm.controls['phone'].touched)" class="alert alert-danger">
+                <div *ngIf="complaintForm.controls['phone'].errors?.['required']">
+                  Phone is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
+              <div *ngIf="complaintForm.controls['description'].touched && complaintForm.controls['description'].invalid" class="alert alert-danger">
+                <div *ngIf="complaintForm.controls['description'].errors?.['required']">Description is required.</div>
+                <div *ngIf="complaintForm.controls['description'].errors?.['required']">Description must be at least 10 characters long.</div>
+              </div>      
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="complaintForm.invalid">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

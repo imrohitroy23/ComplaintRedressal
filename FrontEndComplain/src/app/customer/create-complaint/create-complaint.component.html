@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-sm-6"><img src="/assets/images/complaint.jpeg" class="image"></div>
+    <div class="col-sm-6">
+    <form [formGroup]="complaint" (ngSubmit)="onSubmit()" novalidate>
+        <h2>Raise Ticket</h2>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="name">Name : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="name" formControlName="name" class="form-control">
+                <div *ngIf="complaint.get('name')?.touched && complaint.get('name')?.invalid" class="error-message">
+                    <div *ngIf="complaint.get('name')?.errors?.['required']">Name is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="mobile">Mobile : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="mobile" formControlName="mobile" class="form-control">
+                <div *ngIf="complaint.get('mobile')?.touched && complaint.get('mobile')?.invalid" class="error-message">
+                    <div *ngIf="complaint.get('mobile')?.errors?.['required']">Mobile is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="address">Address : </label>
+            </div>
+            <div class="col-md-9">
+                <textarea formControlName="address" rows="3" cols="50" class="form-control">
+                    Enter text here...
+                </textarea>
+                <div *ngIf="complaint.get('address')?.touched && complaint.get('address')?.invalid" class="error-message">
+                    <div *ngIf="complaint.get('address')?.errors?.['required']">Address is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="pincode">PinCode : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="pincode" formControlName="pincode" class="form-control">
+                <div *ngIf="complaint.get('pincode')?.touched && complaint.get('pincode')?.invalid" class="error-message">
+                    <div *ngIf="complaint.get('pincode')?.errors?.['required']">pinCode is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="connectionType">Connection Type : </label>
+            </div>
+            <div class="col-md-9">
+                <select class="form-control" formControlName="connectionType" (change)="getProblems($event)">
+                    <option value="mobile">Mobile</option>
+                    <option value="landLine">LandLine</option>
+                    <option value="broadBand">BroadBand</option>
+                </select>
+                <div *ngIf="complaint.get('connectionType')?.touched && complaint.get('connectionType')?.invalid" class="error-message">
+                    <div *ngIf="complaint.get('connectionType')?.errors?.['required']">connectionType is required</div>
+                </div>
+            </div>
+        </div> 
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="problem">Problem Type : </label>
+            </div>
+            <div class="col-md-9">
+                <select class="form-control" formControlName="problem">
+                    <option *ngFor="let p of problemList" [value]='p'>{{p}}</option>
+                </select>
+                <div *ngIf="complaint.get('problem')?.touched && complaint.get('problem')?.invalid" class="error-message">
+                    <div *ngIf="complaint.get('problem')?.errors?.['required']">problem Type is required</div>
+                </div>
+            </div>
+        </div> 
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="details">Details : </label>
+            </div>
+            <div class="col-md-9">
+                <textarea formControlName="details" rows="3" cols="50" class="form-control">
+                    Enter text here...
+                </textarea>
+                <div *ngIf="complaint.get('details')?.touched && complaint.get('details')?.invalid" class="error-message">
+                    <div *ngIf="complaint.get('details')?.errors?.['required']">details is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <br>
+            <button type=" submit" class="btn btn-success" [disabled]="complaint.invalid">Submit</button>
+        </div>
+    </form>
+</div>

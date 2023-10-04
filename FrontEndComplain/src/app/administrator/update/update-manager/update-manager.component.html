@@ -1,0 +1,58 @@
+
+<div class="row">
+    <div class="col-sm-6"><img src="/assets/images/createManager.jpg" class="image"></div>
+    <div class="col-sm-6">
+    <form [formGroup]="manager" (ngSubmit)="onSubmit()" novalidate>
+        <h2>Create Manager</h2>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="name">Name : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="name" formControlName="name" class="form-control">
+                <div *ngIf="manager.get('name')?.touched && manager.get('name')?.invalid" class="error-message">
+                    <div *ngIf="manager.get('name')?.errors?.['required']">Name is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="mobile">Mobile : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="mobile" formControlName="mobile" class="form-control">
+                <div *ngIf="manager.get('mobile')?.touched && manager.get('mobile')?.invalid" class="error-message">
+                    <div *ngIf="manager.get('mobile')?.errors?.['required']">Mobile is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="email">E-mail : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="email" formControlName="email" class="form-control">
+                <div *ngIf="manager.get('email')?.touched && manager.get('email')?.invalid" class="error-message">
+                    <div *ngIf="manager.get('email')?.errors?.['required']">Name is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="password">Password : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="password" id="password" formControlName="password" class="form-control">
+                <div *ngIf="manager.get('password')?.touched && manager.get('password')?.invalid" class="error-message">
+                    <div *ngIf="manager.get('password')?.errors?.['required']">Password is required</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <br>
+            <button type=" submit" class="btn btn-success" [disabled]="manager.invalid">Submit</button>
+        </div>
+    </form>
+    </div>
+</div>

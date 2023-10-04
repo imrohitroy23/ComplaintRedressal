@@ -1,0 +1,74 @@
+
+<div class="row">
+    <div class="col-sm-6"><img src="/assets/images/createengineer.jpg" class="image"></div>
+    <div class="col-sm-6">
+    <form [formGroup]="engineer" (ngSubmit)="onSubmit()" novalidate>
+        <h2>Create Engineer</h2>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="name">Name : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="name" formControlName="name" class="form-control">
+                <div *ngIf="engineer.get('name')?.touched && engineer.get('name')?.invalid" class="error-message">
+                    <div *ngIf="engineer.get('name')?.errors?.['required']">Name is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="mobile">Mobile : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="mobile" formControlName="mobile" class="form-control">
+                <div *ngIf="engineer.get('mobile')?.touched && engineer.get('mobile')?.invalid" class="error-message">
+                    <div *ngIf="engineer.get('mobile')?.errors?.['required']">Mobile is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="email">E-mail : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" id="email" formControlName="email" class="form-control">
+                <div *ngIf="engineer.get('email')?.touched && engineer.get('email')?.invalid" class="error-message">
+                    <div *ngIf="engineer.get('email')?.errors?.['required']">Name is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="password">Password : </label>
+            </div>
+            <div class="col-md-9">
+                <input type="password" id="password" formControlName="password" class="form-control">
+                <div *ngIf="engineer.get('password')?.touched && engineer.get('password')?.invalid" class="error-message">
+                    <div *ngIf="engineer.get('password')?.errors?.['required']">Password is required</div>
+                </div>
+            </div>
+        </div>
+        <div formArrayName="pincodes" class="row">
+            <div class="col-md-3">
+                <label for="pincode">Pincode:</label>
+              </div>
+              <div class="col-md-9" style="margin-top: 10px;">(add pincodes where Engineer can work..)</div>
+              <div class="col-md-9 pincode-group" *ngFor="let pincode of pincodes.controls; let i=index">
+                <div class="input-group">
+                  <input type="text" id="pincode" [formControlName]="i" class="form-control">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-danger" (click)="removePincode(i)">Remove</button>
+                  </div>
+                </div>
+            </div>                         
+            <div class="col-md-9" style="margin-top: 10px;">
+                <button type="button" class="btn btn-outline-primary"  (click)="addPincode()">Add Pincode</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <br>
+            <button type=" submit" class="btn btn-success" [disabled]="engineer.invalid">Submit</button>
+        </div>
+    </form>
+    </div>
+</div>

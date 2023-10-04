@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Complaint Details</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th class="table-header">Ticket No:</th>
+                                <td>{{complaint.ticketNo}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Customer Name:</th>
+                                <td>{{complaint.name}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Customer Mobile:</th>
+                                <td>{{complaint.mobile}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Customer Address:</th>
+                                <td>{{complaint.address}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Connection Type:</th>
+                                <td>{{complaint.connectionType}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Problem:</th>
+                                <td>{{complaint.problem}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Details:</th>
+                                <td>{{complaint.details}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Pincode:</th>
+                                <td>{{complaint.pincode}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Status:</th>
+                                <td class="status-cell">{{complaint.status}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Assign Engineer:</th>
+                                <td class="engineer-cell">
+                                    <div class="form-group">
+                                        <select class="form-control" (change)="getEngineer($event)">
+                                            <option value="{{eid}}">{{prevEngineer}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-track-complaint></app-track-complaint>
+<app-feedbacks></app-feedbacks>

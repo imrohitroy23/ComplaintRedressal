@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-sm-6"><img src="/assets/images/loginImage.jpg" class="image"></div>
+    <div class="col-sm-6">
+        <form [formGroup]="login" (ngSubmit)="onSubmit()" novalidate>
+            <h2>Login Page</h2>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label for="userName">UserName : </label>
+                </div>
+                <div class="col-md-9">
+                    <input type="userName" id="userName" formControlName="userName" class="form-control">
+                    <div *ngIf="login.get('userName')?.touched && login.get('userName')?.invalid" class="error-message">
+                        <div *ngIf="login.get('userName')?.errors?.['required']">userName is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label for="password">Password : </label>
+                </div>
+                <div class="col-md-9">
+                    <input type="password" id="password" formControlName="password" class="form-control">
+                    <div *ngIf="login.get('password')?.touched && login.get('password')?.invalid" class="error-message">
+                        <div *ngIf="login.get('password')?.errors?.['required']">password is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label for="role">Role Type : </label>
+                </div>
+                <div class="col-md-9">
+                    <select formControlName="role" class="form-control">
+                        <option value="admin">Admin</option>
+                        <option value="manager">Manager</option>
+                        <option value="engineer">Engineer</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                    <div *ngIf="login.get('role')?.touched && login.get('role')?.invalid" class="error-message">
+                        <div *ngIf="login.get('role')?.errors?.['required']">Role is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <br>
+                <button type=" submit" class="btn btn-success" [disabled]="login.invalid">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

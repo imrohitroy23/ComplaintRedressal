@@ -1,0 +1,74 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="assets/images/abc-telecom.png" alt="ICINBank" width="100" height="50" class="d-inline-block align-top">
+      <span class="ml-2"> ABC-Telecom</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+
+        <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
+          <a class="nav-link" routerLink="/admin/list/complaints">Complaints</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isLoggedIn && isAdmin" >
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Create
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/admin/create/customer">Customer</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/admin/create/manager">Manager</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/admin/create/engineer">Engineer</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isLoggedIn && isAdmin" >
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            List
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/admin/list/customer">Customer</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/admin/list/manager">Manager</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/admin/list/engineer">Engineer</a></li>
+          </ul>
+        </li>
+
+        <li *ngIf="isLoggedIn && isCustomer" class="nav-item">
+          <a class="nav-link" routerLink="/customer/complaint">Complaint</a>
+        </li>
+        <li *ngIf="isLoggedIn && isCustomer" class="nav-item">
+          <a class="nav-link" routerLink="/customer/complaintList">Complaint List</a>
+        </li>
+
+        <li *ngIf="isLoggedIn && isEngineer" class="nav-item">
+          <a class="nav-link" routerLink="/engineer/complaints">Complaints</a>
+        </li>
+
+        <li *ngIf="isLoggedIn && isManager" class="nav-item">
+          <a class="nav-link" routerLink="/manager/complaints">Complaints</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">About Us</a>
+        </li>
+
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a class="nav-link" routerLink="/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

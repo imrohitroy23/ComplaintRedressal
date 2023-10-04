@@ -1,0 +1,26 @@
+<div class="card mt-4">
+    <div class="card-header">
+      <h4 class="text-center">Feedback History</h4>
+    </div>
+    <div class="card-body">
+      <div *ngFor="let f of feedbackList">
+        <div *ngIf="f.role === 'customer'">
+          <div class="customer-feedback">
+            <p>{{ f.feedback }}</p>
+            <span class="message-sender">You
+              <span class="message-date" style="float: right;">{{ f.currentDateTime | date:'MMM d, yyyy h:mm a' }}</span>
+            </span>
+            
+          </div>
+        </div>
+        <div *ngIf="f.role === 'engineer'">
+          <div class="engineer-feedback">
+            <p>{{ f.feedback }}</p>
+            <span class="message-sender">Engineer
+              <span class="message-date" style="float: right;">{{ f.currentDateTime | date:'MMM d, yyyy h:mm a' }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

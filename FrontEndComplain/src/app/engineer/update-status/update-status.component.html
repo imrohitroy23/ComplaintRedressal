@@ -1,0 +1,95 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Complaint Details</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th class="table-header">Ticket No:</th>
+                                <td>{{complaint.ticketNo}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Customer Name:</th>
+                                <td>{{complaint.name}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Customer Mobile:</th>
+                                <td>{{complaint.mobile}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Customer Address:</th>
+                                <td>{{complaint.address}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Connection Type:</th>
+                                <td>{{complaint.connectionType}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Problem:</th>
+                                <td>{{complaint.problem}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Details:</th>
+                                <td>{{complaint.details}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Pincode:</th>
+                                <td>{{complaint.pincode}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header">Status:</th>
+                                <td class="status-cell">
+                                    <select  class="form-control" (change)="setStatus($event)">
+                                        <option *ngFor="let s of statusArray">{{s}}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr *ngIf="complaint.status=='RESOLVED' || complaint.status=='ESCALATED';">
+                                <th class="table-header">Assign Feedback:</th>
+                                <td class="engineer-cell">
+                                    <div class="form-group">
+                                        <textarea [(ngModel)]="feedback" class="form-control" placeholder="Enter your feedback.."></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button style="margin-left: 40%;" class="btn btn-primary" (click)="onSubmit()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-track-complaint></app-track-complaint>
+
+<div class="card mt-4">
+    <div class="card-header">
+      <h4 class="text-center">Feedback History</h4>
+    </div>
+    <div class="card-body">
+      <div *ngFor="let f of feedbackList">
+        <div *ngIf="f.role === 'customer'">
+          <div class="customer-feedback">
+            <p>{{ f.feedback }}</p>
+            <span class="message-sender">You
+              <span class="message-date" style="float: right;">{{ f.currentDateTime | date:'MMM d, yyyy h:mm a' }}</span>
+            </span>
+            
+          </div>
+        </div>
+        <div *ngIf="f.role === 'engineer'">
+          <div class="engineer-feedback">
+            <p>{{ f.feedback }}</p>
+            <span class="message-sender">Engineer
+              <span class="message-date" style="float: right;">{{ f.currentDateTime | date:'MMM d, yyyy h:mm a' }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
